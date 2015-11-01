@@ -1,0 +1,429 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		942136581BE5979A007CD598 /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942136571BE5979A007CD598 /* Measurement.swift */; };
+		944E2B001BE6171D002F1F58 /* InfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944E2AFF1BE6171D002F1F58 /* InfoTableViewController.swift */; };
+		94B4A02B1BE5189500A103C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B4A02A1BE5189500A103C6 /* AppDelegate.swift */; };
+		94B4A0321BE5189500A103C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94B4A0301BE5189500A103C6 /* Main.storyboard */; };
+		94B4A0341BE5189500A103C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94B4A0331BE5189500A103C6 /* Assets.xcassets */; };
+		94B4A0371BE5189500A103C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94B4A0351BE5189500A103C6 /* LaunchScreen.storyboard */; };
+		94B4A0421BE5189500A103C6 /* BicycleSpeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B4A0411BE5189500A103C6 /* BicycleSpeedTests.swift */; };
+		94B4A04D1BE518C400A103C6 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B4A04C1BE518C400A103C6 /* BluetoothManager.swift */; };
+		94B4A04F1BE518D600A103C6 /* CadenceSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B4A04E1BE518D600A103C6 /* CadenceSensor.swift */; };
+		94B4A0511BE51D8900A103C6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B4A0501BE51D8900A103C6 /* MainViewController.swift */; };
+		94B4A0531BE51D9F00A103C6 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B4A0521BE51D9F00A103C6 /* ScanViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		94B4A03E1BE5189500A103C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 94B4A01F1BE5189500A103C6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 94B4A0261BE5189500A103C6;
+			remoteInfo = BicycleSpeed;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		942136571BE5979A007CD598 /* Measurement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Measurement.swift; sourceTree = "<group>"; };
+		944E2AFF1BE6171D002F1F58 /* InfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableViewController.swift; sourceTree = "<group>"; };
+		94B4A0271BE5189500A103C6 /* BicycleSpeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BicycleSpeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		94B4A02A1BE5189500A103C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		94B4A0311BE5189500A103C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		94B4A0331BE5189500A103C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		94B4A0361BE5189500A103C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		94B4A0381BE5189500A103C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94B4A03D1BE5189500A103C6 /* BicycleSpeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BicycleSpeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		94B4A0411BE5189500A103C6 /* BicycleSpeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BicycleSpeedTests.swift; sourceTree = "<group>"; };
+		94B4A0431BE5189500A103C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94B4A04C1BE518C400A103C6 /* BluetoothManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
+		94B4A04E1BE518D600A103C6 /* CadenceSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CadenceSensor.swift; sourceTree = "<group>"; };
+		94B4A0501BE51D8900A103C6 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		94B4A0521BE51D9F00A103C6 /* ScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		94B4A0241BE5189500A103C6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94B4A03A1BE5189500A103C6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		94B4A01E1BE5189500A103C6 = {
+			isa = PBXGroup;
+			children = (
+				94B4A0291BE5189500A103C6 /* BicycleSpeed */,
+				94B4A0401BE5189500A103C6 /* BicycleSpeedTests */,
+				94B4A0281BE5189500A103C6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		94B4A0281BE5189500A103C6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				94B4A0271BE5189500A103C6 /* BicycleSpeed.app */,
+				94B4A03D1BE5189500A103C6 /* BicycleSpeedTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		94B4A0291BE5189500A103C6 /* BicycleSpeed */ = {
+			isa = PBXGroup;
+			children = (
+				94B4A02A1BE5189500A103C6 /* AppDelegate.swift */,
+				94B4A0331BE5189500A103C6 /* Assets.xcassets */,
+				94B4A0381BE5189500A103C6 /* Info.plist */,
+				94B4A04C1BE518C400A103C6 /* BluetoothManager.swift */,
+				94B4A04E1BE518D600A103C6 /* CadenceSensor.swift */,
+				94B4A0501BE51D8900A103C6 /* MainViewController.swift */,
+				94B4A0521BE51D9F00A103C6 /* ScanViewController.swift */,
+				94B4A0301BE5189500A103C6 /* Main.storyboard */,
+				94B4A0351BE5189500A103C6 /* LaunchScreen.storyboard */,
+				942136571BE5979A007CD598 /* Measurement.swift */,
+				944E2AFF1BE6171D002F1F58 /* InfoTableViewController.swift */,
+			);
+			path = BicycleSpeed;
+			sourceTree = "<group>";
+		};
+		94B4A0401BE5189500A103C6 /* BicycleSpeedTests */ = {
+			isa = PBXGroup;
+			children = (
+				94B4A0411BE5189500A103C6 /* BicycleSpeedTests.swift */,
+				94B4A0431BE5189500A103C6 /* Info.plist */,
+			);
+			path = BicycleSpeedTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		94B4A0261BE5189500A103C6 /* BicycleSpeed */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94B4A0461BE5189500A103C6 /* Build configuration list for PBXNativeTarget "BicycleSpeed" */;
+			buildPhases = (
+				94B4A0231BE5189500A103C6 /* Sources */,
+				94B4A0241BE5189500A103C6 /* Frameworks */,
+				94B4A0251BE5189500A103C6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BicycleSpeed;
+			productName = BicycleSpeed;
+			productReference = 94B4A0271BE5189500A103C6 /* BicycleSpeed.app */;
+			productType = "com.apple.product-type.application";
+		};
+		94B4A03C1BE5189500A103C6 /* BicycleSpeedTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94B4A0491BE5189500A103C6 /* Build configuration list for PBXNativeTarget "BicycleSpeedTests" */;
+			buildPhases = (
+				94B4A0391BE5189500A103C6 /* Sources */,
+				94B4A03A1BE5189500A103C6 /* Frameworks */,
+				94B4A03B1BE5189500A103C6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				94B4A03F1BE5189500A103C6 /* PBXTargetDependency */,
+			);
+			name = BicycleSpeedTests;
+			productName = BicycleSpeedTests;
+			productReference = 94B4A03D1BE5189500A103C6 /* BicycleSpeedTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		94B4A01F1BE5189500A103C6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = erndev;
+				TargetAttributes = {
+					94B4A0261BE5189500A103C6 = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					94B4A03C1BE5189500A103C6 = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = 94B4A0261BE5189500A103C6;
+					};
+				};
+			};
+			buildConfigurationList = 94B4A0221BE5189500A103C6 /* Build configuration list for PBXProject "BicycleSpeed" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 94B4A01E1BE5189500A103C6;
+			productRefGroup = 94B4A0281BE5189500A103C6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				94B4A0261BE5189500A103C6 /* BicycleSpeed */,
+				94B4A03C1BE5189500A103C6 /* BicycleSpeedTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		94B4A0251BE5189500A103C6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94B4A0371BE5189500A103C6 /* LaunchScreen.storyboard in Resources */,
+				94B4A0341BE5189500A103C6 /* Assets.xcassets in Resources */,
+				94B4A0321BE5189500A103C6 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94B4A03B1BE5189500A103C6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		94B4A0231BE5189500A103C6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				944E2B001BE6171D002F1F58 /* InfoTableViewController.swift in Sources */,
+				94B4A04F1BE518D600A103C6 /* CadenceSensor.swift in Sources */,
+				94B4A04D1BE518C400A103C6 /* BluetoothManager.swift in Sources */,
+				942136581BE5979A007CD598 /* Measurement.swift in Sources */,
+				94B4A0531BE51D9F00A103C6 /* ScanViewController.swift in Sources */,
+				94B4A02B1BE5189500A103C6 /* AppDelegate.swift in Sources */,
+				94B4A0511BE51D8900A103C6 /* MainViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94B4A0391BE5189500A103C6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94B4A0421BE5189500A103C6 /* BicycleSpeedTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		94B4A03F1BE5189500A103C6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 94B4A0261BE5189500A103C6 /* BicycleSpeed */;
+			targetProxy = 94B4A03E1BE5189500A103C6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		94B4A0301BE5189500A103C6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				94B4A0311BE5189500A103C6 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		94B4A0351BE5189500A103C6 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				94B4A0361BE5189500A103C6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		94B4A0441BE5189500A103C6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		94B4A0451BE5189500A103C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		94B4A0471BE5189500A103C6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = BicycleSpeed/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.erndev.BicycleSpeed;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		94B4A0481BE5189500A103C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = BicycleSpeed/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.erndev.BicycleSpeed;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		94B4A04A1BE5189500A103C6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = BicycleSpeedTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.erndev.BicycleSpeedTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BicycleSpeed.app/BicycleSpeed";
+			};
+			name = Debug;
+		};
+		94B4A04B1BE5189500A103C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = BicycleSpeedTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.erndev.BicycleSpeedTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BicycleSpeed.app/BicycleSpeed";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		94B4A0221BE5189500A103C6 /* Build configuration list for PBXProject "BicycleSpeed" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94B4A0441BE5189500A103C6 /* Debug */,
+				94B4A0451BE5189500A103C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		94B4A0461BE5189500A103C6 /* Build configuration list for PBXNativeTarget "BicycleSpeed" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94B4A0471BE5189500A103C6 /* Debug */,
+				94B4A0481BE5189500A103C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		94B4A0491BE5189500A103C6 /* Build configuration list for PBXNativeTarget "BicycleSpeedTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94B4A04A1BE5189500A103C6 /* Debug */,
+				94B4A04B1BE5189500A103C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 94B4A01F1BE5189500A103C6 /* Project object */;
+}

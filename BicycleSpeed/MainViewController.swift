@@ -24,9 +24,9 @@ class MainViewController: UIViewController {
   var infoViewController:InfoTableViewController?
   var accumulatedDistance:Double?
   
-  lazy var distanceFormatter:NSLengthFormatter = {
+  lazy var distanceFormatter:LengthFormatter = {
     
-    let formatter = NSLengthFormatter()
+    let formatter = LengthFormatter()
     formatter.numberFormatter.maximumFractionDigits = 1
     
     return formatter
@@ -41,7 +41,7 @@ class MainViewController: UIViewController {
       
       bluetoothManager = BluetoothManager()
       bluetoothManager.bluetoothDelegate = self
-      scanItem.enabled = false
+      scanItem.isEnabled = false
     
   }
   
@@ -49,7 +49,7 @@ class MainViewController: UIViewController {
     disconnectSensor()
   }
   
-  @IBAction func unwindSegue( segue:UIStoryboardSegue ) {
+  @IBAction func unwindSegue( _ segue:UIStoryboardSegue ) {
       bluetoothManager.stopScan()
     guard let sensor = (segue as? ScanUnwindSegue)?.sensor else {
       return
@@ -67,19 +67,19 @@ class MainViewController: UIViewController {
     accumulatedDistance = nil
   }
   
-  func connectToSensor(sensor:CadenceSensor) {
+  func connectToSensor(_ sensor:CadenceSensor) {
     
     self.sensor  = sensor
     bluetoothManager.connectToSensor(sensor)
     // Save the sensor ID
-    NSUserDefaults.standardUserDefaults().setObject(sensor.peripheral.identifier.UUIDString, forKey: Constants.SensorUserDefaultsKey)
-    NSUserDefaults.standardUserDefaults().synchronize()
+    UserDefaults.standard.set(sensor.peripheral.identifier.uuidString, forKey: Constants.SensorUserDefaultsKey)
+    UserDefaults.standard.synchronize()
     
   }
   // TODO: REconnect. Try this every X seconds
   func checkPreviousSensor() {
     
-    guard let sensorID = NSUserDefaults.standardUserDefaults().objectForKey(Constants.SensorUserDefaultsKey)  as? String else {
+    guard let sensorID = UserDefaults.standard.object(forKey: Constants.SensorUserDefaultsKey)  as? String else {
       return
     }
     guard let sensor = bluetoothManager.retrieveSensorWithIdentifier(sensorID) else {
@@ -90,15 +90,15 @@ class MainViewController: UIViewController {
     
   }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if let infoVC = segue.destinationViewController as? InfoTableViewController {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let infoVC = segue.destination as? InfoTableViewController {
         infoViewController = infoVC
     }
     if segue.identifier == Constants.ScanSegue {
       
         // Scan segue
       bluetoothManager.startScan()
-      scanViewController  = (segue.destinationViewController as? UINavigationController)?.viewControllers.first as? ScanViewController
+      scanViewController  = (segue.destination as? UINavigationController)?.viewControllers.first as? ScanViewController
     }
     
   }
@@ -107,7 +107,7 @@ class MainViewController: UIViewController {
 
 extension MainViewController : CadenceSensorDelegate {
   
-  func errorDiscoveringSensorInformation(error: NSError) {
+  func errorDiscoveringSensorInformation(_ error: NSError) {
       print("An error ocurred disconvering the sensor services/characteristics: \(error)")
   }
   
@@ -118,9 +118,9 @@ extension MainViewController : CadenceSensorDelegate {
   
   func updateSensorInfo() {
     let name = sensor?.peripheral.name ?? ""
-    let uuid = sensor?.peripheral.identifier.UUIDString ?? ""
+    let uuid = sensor?.peripheral.identifier.uuidString ?? ""
     
-    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+    OperationQueue.main.addOperation { () -> Void in
       self.infoViewController?.showDeviceName(name , uuid:uuid )
     }
   }
@@ -129,11 +129,11 @@ extension MainViewController : CadenceSensorDelegate {
   func sensorUpdatedValues( speedInMetersPerSecond speed:Double?, cadenceInRpm cadence:Double?, distanceInMeters distance:Double? ) {
     
     accumulatedDistance? += distance ?? 0
-    let distanceText = (accumulatedDistance != nil && accumulatedDistance! >= 1.0) ? distanceFormatter.stringFromMeters(accumulatedDistance!) : "N/A"
-    let speedText = (speed != nil) ? distanceFormatter.stringFromValue(speed!*3.6, unit: .Kilometer) + NSLocalizedString("/h", comment:"(km) Per hour") : "N/A"
+    let distanceText = (accumulatedDistance != nil && accumulatedDistance! >= 1.0) ? distanceFormatter.string(fromMeters: accumulatedDistance!) : "N/A"
+    let speedText = (speed != nil) ? distanceFormatter.string(fromValue: speed!*3.6, unit: .kilometer) + NSLocalizedString("/h", comment:"(km) Per hour") : "N/A"
     let cadenceText = (cadence != nil) ? String(format: "%.2f %@",  cadence!, NSLocalizedString("RPM", comment:"Revs per minute") ) : "N/A"
     
-    NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+    OperationQueue.main.addOperation { () -> Void in
       
       self.infoViewController?.showMeasurementWithSpeed(speedText , cadence: cadenceText, distance: distanceText )
     }
@@ -144,35 +144,35 @@ extension MainViewController : CadenceSensorDelegate {
 
 extension MainViewController : BluetoothManagerDelegate {
   
-  func stateChanged(state: CBCentralManagerState) {
+  func stateChanged(_ state: CBCentralManagerState) {
     print("State Changed: \(state)")
     var enabled = false
     var title = ""
     switch state {
-    case .PoweredOn:
+    case .poweredOn:
         title = "Bluetooth ON"
         enabled = true
         // When the bluetooth changes to ON, try to reconnect to the previous sensor
         checkPreviousSensor()
 
-    case .Resetting:
+    case .resetting:
         title = "Reseeting"
-    case .PoweredOff:
+    case .poweredOff:
       title = "Bluetooth Off"
-    case .Unauthorized:
+    case .unauthorized:
       title = "Bluetooth not authorized"
-    case .Unknown:
+    case .unknown:
       title = "Unknown"
-    case .Unsupported:
+    case .unsupported:
       title = "Bluetooth not supported"
     }
     infoViewController?.showBluetoothStatusText( title )
-    scanItem.enabled = enabled
+    scanItem.isEnabled = enabled
   }
   
 
   
-  func sensorConnection( sensor:CadenceSensor, error:NSError?) {
+  func sensorConnection( _ sensor:CadenceSensor, error:NSError?) {
       print("")
     guard error == nil else {
       self.sensor = nil
@@ -183,18 +183,18 @@ extension MainViewController : BluetoothManagerDelegate {
     }
     self.sensor = sensor
     self.sensor?.sensorDelegate = self
-    print("Sensor connected. \(sensor.peripheral.name). [\(sensor.peripheral.identifier)]")
+    print("Sensor connected. \(String(describing: sensor.peripheral.name)). [\(sensor.peripheral.identifier)]")
     updateSensorInfo()
     
     sensor.start()
   }
   
-  func sensorDisconnected( sensor:CadenceSensor, error:NSError?) {
+  func sensorDisconnected( _ sensor:CadenceSensor, error:NSError?) {
     print("Sensor disconnected")
     self.sensor = nil
   }
   
-  func sensorDiscovered( sensor:CadenceSensor ) {
+  func sensorDiscovered( _ sensor:CadenceSensor ) {
       scanViewController?.addSensor(sensor)
   }
   

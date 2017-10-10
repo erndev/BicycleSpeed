@@ -34,7 +34,7 @@ public struct BTConstants {
 
 protocol CadenceSensorDelegate {
   
-  func errorDiscoveringSensorInformation(error:NSError)
+  func errorDiscoveringSensorInformation(_ error:NSError)
   func sensorReady()
   func sensorUpdatedValues( speedInMetersPerSecond speed:Double?, cadenceInRpm cadence:Double?, distanceInMeters distance:Double? )
 }
@@ -61,12 +61,12 @@ class CadenceSensor: NSObject {
   
   func stop() {
     if let measurementCharasteristic = measurementCharasteristic {
-      peripheral.setNotifyValue(false, forCharacteristic: measurementCharasteristic)
+      peripheral.setNotifyValue(false, for: measurementCharasteristic)
     }
     
   }
   
-  func handleValueData( data:NSData ) {
+  func handleValueData( _ data:Data ) {
     
       let measurement = Measurement(data: data, wheelSize: wheelCircunference)
       print("\(measurement)")
@@ -83,18 +83,18 @@ class CadenceSensor: NSObject {
 extension CadenceSensor : CBPeripheralDelegate {
   
   
-  func peripheral(peripheral: CBPeripheral, didUpdateNotificationStateForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+  func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
     guard error == nil else {
       sensorDelegate?.errorDiscoveringSensorInformation(NSError(domain: CBErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey:NSLocalizedString("Error receiving measurements updates", comment:"")]))
       
       return
     }
-    print("notification status changed for [\(characteristic.UUID)]...")
+    print("notification status changed for [\(characteristic.uuid)]...")
   }
   
-  func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+  func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
     
-    print("Updated [\(characteristic.UUID)]...")
+    print("Updated [\(characteristic.uuid)]...")
     
     guard error == nil  , let data = characteristic.value  else {
       
@@ -105,26 +105,26 @@ extension CadenceSensor : CBPeripheralDelegate {
     
   }
   
-  func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
+  func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
     guard error == nil  else {
-      sensorDelegate?.errorDiscoveringSensorInformation(error!)
+      sensorDelegate?.errorDiscoveringSensorInformation(error! as NSError)
       return
     }
     // Find the cadence service
     guard let cadenceService =  peripheral.services?.filter({ (service) -> Bool in
-      return service.UUID == CBUUID(string: BTConstants.CadenceService)
+      return service.uuid == CBUUID(string: BTConstants.CadenceService)
     }).first else {
       
       sensorDelegate?.errorDiscoveringSensorInformation(NSError(domain: CBErrorDomain, code: NSNotFound, userInfo: [NSLocalizedDescriptionKey:NSLocalizedString("Cadence service not found for this peripheral", comment:"")]))
       return
     }
     // Discover the cadence service characteristics
-    peripheral.discoverCharacteristics(nil, forService:cadenceService )
+    peripheral.discoverCharacteristics(nil, for:cadenceService )
     print("Cadence service discovered")
     
   }
   
-  func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
+  func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
     
     guard let characteristics = service.characteristics else {
       sensorDelegate?.errorDiscoveringSensorInformation(NSError(domain: CBErrorDomain, code: NSNotFound, userInfo: [NSLocalizedDescriptionKey:NSLocalizedString("No characteristics found for the cadence service", comment:"")]))
@@ -137,12 +137,12 @@ extension CadenceSensor : CBPeripheralDelegate {
     // Enable notifications for the measurement characteristic
     for characteristic in characteristics {
       
-      print("Service \(service.UUID). Characteristic [\(characteristic.UUID)]")
+      print("Service \(service.uuid). Characteristic [\(characteristic.uuid)]")
       
-      if characteristic.UUID == CBUUID(string: BTConstants.CSCMeasurementUUID) {
+      if characteristic.uuid == CBUUID(string: BTConstants.CSCMeasurementUUID) {
         
         print("Found measurement characteristic. Subscribing...")
-        peripheral.setNotifyValue(true, forCharacteristic: characteristic)
+        peripheral.setNotifyValue(true, for: characteristic)
         measurementCharasteristic  = characteristic
         
       }

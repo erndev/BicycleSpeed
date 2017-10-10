@@ -24,18 +24,18 @@ struct Measurement : CustomDebugStringConvertible {
   let hasWheel:Bool
   let hasCrank:Bool
   let cumulativeWheel:UInt32
-  let lastWheelEventTime:NSTimeInterval
+  let lastWheelEventTime:TimeInterval
   let cumulativeCrank:UInt16
-  let lastCrankEventTime:NSTimeInterval
+  let lastCrankEventTime:TimeInterval
   let wheelSize:UInt32
   
   
-  init(data:NSData, wheelSize:UInt32) {
+  init(data:Data, wheelSize:UInt32) {
     
     self.wheelSize = wheelSize
     // Flags
     var flags:UInt8=0
-    data.getBytes(&flags, range: NSRange(location: 0, length: 1))
+    (data as NSData).getBytes(&flags, range: NSRange(location: 0, length: 1))
     
     hasWheel = ((flags & BTConstants.WheelFlagMask) > 0)
     hasCrank = ((flags & BTConstants.CrankFlagMask) > 0)
@@ -50,47 +50,47 @@ struct Measurement : CustomDebugStringConvertible {
     
     if ( hasWheel ) {
       
-      length = sizeof(UInt32)
-      data.getBytes(&wheel, range: NSRange(location: currentOffset, length: length))
+      length = MemoryLayout<UInt32>.size
+      (data as NSData).getBytes(&wheel, range: NSRange(location: currentOffset, length: length))
       currentOffset += length
       
-      length = sizeof(UInt16)
-      data.getBytes(&wheelTime, range: NSRange(location: currentOffset, length: length))
+      length = MemoryLayout<UInt16>.size
+      (data as NSData).getBytes(&wheelTime, range: NSRange(location: currentOffset, length: length))
       currentOffset += length
     }
     
     if ( hasCrank ) {
       
-      length = sizeof(UInt16)
-      data.getBytes(&crank, range: NSRange(location: currentOffset, length: length))
+      length = MemoryLayout<UInt16>.size
+      (data as NSData).getBytes(&crank, range: NSRange(location: currentOffset, length: length))
       currentOffset += length
       
-      length = sizeof(UInt16)
-      data.getBytes(&crankTime, range: NSRange(location: currentOffset, length: length))
+      length = MemoryLayout<UInt16>.size
+      (data as NSData).getBytes(&crankTime, range: NSRange(location: currentOffset, length: length))
       currentOffset += length
     }
     
     cumulativeWheel     = CFSwapInt32LittleToHost(wheel)
-    lastWheelEventTime  = NSTimeInterval( Double(CFSwapInt16LittleToHost(wheelTime))/BTConstants.TimeScale)
+    lastWheelEventTime  = TimeInterval( Double(CFSwapInt16LittleToHost(wheelTime))/BTConstants.TimeScale)
     cumulativeCrank     = CFSwapInt16LittleToHost(crank)
-    lastCrankEventTime  = NSTimeInterval( Double(CFSwapInt16LittleToHost(crankTime))/BTConstants.TimeScale)
+    lastCrankEventTime  = TimeInterval( Double(CFSwapInt16LittleToHost(crankTime))/BTConstants.TimeScale)
     
   }
   
-  func timeIntervalForCurrentSample( current:NSTimeInterval, previous:NSTimeInterval ) -> NSTimeInterval {
-    var timeDiff:NSTimeInterval = 0
+  func timeIntervalForCurrentSample( _ current:TimeInterval, previous:TimeInterval ) -> TimeInterval {
+    var timeDiff:TimeInterval = 0
     if( current >= previous ) {
         timeDiff = current - previous
     }
     else {
       // passed the maximum value
-      timeDiff =  ( NSTimeInterval((Double( UINT16_MAX) / BTConstants.TimeScale)) - previous) + current
+      timeDiff =  ( TimeInterval((Double( UINT16_MAX) / BTConstants.TimeScale)) - previous) + current
     }
     return timeDiff
     
   }
   
-  func valueDiffForCurrentSample<T:UnsignedIntegerType>( current:T, previous:T , max:T) -> T {
+  func valueDiffForCurrentSample<T:UnsignedInteger>( _ current:T, previous:T , max:T) -> T {
     
     var diff:T = 0
     if  ( current >= previous ) {
@@ -103,7 +103,7 @@ struct Measurement : CustomDebugStringConvertible {
   }
   
   
-  func valuesForPreviousMeasurement( previousSample:Measurement? ) -> ( cadenceinRPM:Double?, distanceinMeters:Double?, speedInMetersPerSecond:Double?)? {
+  func valuesForPreviousMeasurement( _ previousSample:Measurement? ) -> ( cadenceinRPM:Double?, distanceinMeters:Double?, speedInMetersPerSecond:Double?)? {
     
     
     var distance:Double?, cadence:Double?, speed:Double?
@@ -126,7 +126,7 @@ struct Measurement : CustomDebugStringConvertible {
       
       cadence = (crankDiffTime == 0) ? 0 : Double(60.0 * valueDiff / crankDiffTime) // RPM
     }
-    print( "Cadence: \(cadence) RPM. Distance: \(distance) meters. Speed: \(speed) Km/h" )
+    print( "Cadence: \(String(describing: cadence)) RPM. Distance: \(String(describing: distance)) meters. Speed: \(String(describing: speed)) Km/h" )
     return ( cadenceinRPM:cadence, distanceinMeters:distance, speedInMetersPerSecond:speed)
   }
   

@@ -13,10 +13,10 @@ import CoreBluetooth
 
 protocol BluetoothManagerDelegate {
   
-  func stateChanged(state:CBCentralManagerState)
-  func sensorDiscovered( sensor:CadenceSensor )
-  func sensorConnection( sensor:CadenceSensor, error:NSError?)
-  func sensorDisconnected( sensor:CadenceSensor, error:NSError?)
+  func stateChanged(_ state:CBCentralManagerState)
+  func sensorDiscovered( _ sensor:CadenceSensor )
+  func sensorConnection( _ sensor:CadenceSensor, error:NSError?)
+  func sensorDisconnected( _ sensor:CadenceSensor, error:NSError?)
 }
 
 
@@ -43,7 +43,7 @@ class BluetoothManager:NSObject {
   
   func startScan() {
     
-      bluetoothCentral.scanForPeripheralsWithServices(servicesToScan, options: nil )
+      bluetoothCentral.scanForPeripherals(withServices: servicesToScan, options: nil )
   }
   
   func stopScan() {
@@ -52,21 +52,21 @@ class BluetoothManager:NSObject {
     }
   }
   
-  func connectToSensor(sensor:CadenceSensor) {
+  func connectToSensor(_ sensor:CadenceSensor) {
       // just in case, disconnect pending connections first
       disconnectSensor(sensor)
-      bluetoothCentral.connectPeripheral(sensor.peripheral, options: nil)
+      bluetoothCentral.connect(sensor.peripheral, options: nil)
   }
   
-  func disconnectSensor(sensor:CadenceSensor) {
+  func disconnectSensor(_ sensor:CadenceSensor) {
       bluetoothCentral.cancelPeripheralConnection(sensor.peripheral)
   }
   
-  func retrieveSensorWithIdentifier( identifier:String ) -> CadenceSensor? {
-    guard let uuid  = NSUUID(UUIDString: identifier) else  {
+  func retrieveSensorWithIdentifier( _ identifier:String ) -> CadenceSensor? {
+    guard let uuid  = UUID(uuidString: identifier) else  {
       return nil
     }
-    guard let peripheral = bluetoothCentral.retrievePeripheralsWithIdentifiers([uuid]).first else {
+    guard let peripheral = bluetoothCentral.retrievePeripherals(withIdentifiers: [uuid]).first else {
       return nil
     }
     return CadenceSensor(peripheral: peripheral)
@@ -76,25 +76,24 @@ class BluetoothManager:NSObject {
 
 extension BluetoothManager:CBCentralManagerDelegate {
   
-  func centralManagerDidUpdateState(central: CBCentralManager) {
-    bluetoothDelegate?.stateChanged(central.state)
+  func centralManagerDidUpdateState(_ central: CBCentralManager) {
+    var state: CBCentralManagerState { get { return CBCentralManagerState(rawValue: central.state.rawValue)! }}
+    bluetoothDelegate?.stateChanged(state)
   }
   
   
-  func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
+  func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
       print("Peripeherals")
     let sensor = CadenceSensor(peripheral: peripheral)
     bluetoothDelegate?.sensorDiscovered(sensor)
   }
   
-  func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
+  func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
       bluetoothDelegate?.sensorConnection(CadenceSensor(peripheral: peripheral), error: nil)
   }
   
-  func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
-    bluetoothDelegate?.sensorConnection(CadenceSensor(peripheral: peripheral), error: error)
-
+  func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+    bluetoothDelegate?.sensorConnection(CadenceSensor(peripheral: peripheral), error: error as NSError?)
   }
-  
-  
+
 }

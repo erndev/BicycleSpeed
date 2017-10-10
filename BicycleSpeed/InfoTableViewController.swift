@@ -10,7 +10,7 @@ import UIKit
 
 class InfoTableViewController: UITableViewController {
 
-  private struct Constants {
+  fileprivate struct Constants {
     
     static let BluetoothStatusSection=0
     static let DeviceSectionSection=1
@@ -30,18 +30,18 @@ class InfoTableViewController: UITableViewController {
     super.viewDidLoad()
   }
   
-  func showBluetoothStatusText( text:String ) {
+  func showBluetoothStatusText( _ text:String ) {
     showDetailText(text, atSection: Constants.BluetoothStatusSection, row:Constants.BluetoothStatusRow)
   }
   
-  func showDeviceName( name:String? , uuid:String? ) {
+  func showDeviceName( _ name:String? , uuid:String? ) {
     showDetailText(name ?? "", atSection: Constants.DeviceSectionSection, row:Constants.DeviceNameRow)
     showDetailText(uuid ?? "", atSection: Constants.DeviceSectionSection, row:Constants.DeviceUUIDRow)
 
   }
 
   
-  func showMeasurementWithSpeed( speed:String, cadence:String, distance:String  ) {
+  func showMeasurementWithSpeed( _ speed:String, cadence:String, distance:String  ) {
     
     showDetailText(speed, atSection: Constants.MeasurementsSection, row:Constants.SpeedRow)
     showDetailText(cadence, atSection: Constants.MeasurementsSection, row:Constants.CadenceRow)
@@ -50,8 +50,8 @@ class InfoTableViewController: UITableViewController {
   }
   
 
-  func showDetailText( text:String , atSection section:Int, row:Int) {
-    if let cell  = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: section )) {
+  func showDetailText( _ text:String , atSection section:Int, row:Int) {
+    if let cell  = tableView.cellForRow(at: IndexPath(row: row, section: section )) {
         cell.detailTextLabel?.text = text
     }
   }

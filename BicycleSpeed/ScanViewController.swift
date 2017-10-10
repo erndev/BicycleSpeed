@@ -26,7 +26,7 @@ class ScanViewController: UITableViewController {
     
   }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
    
     guard let tableSelection = tableView.indexPathForSelectedRow, let unwindSegue = segue as? ScanUnwindSegue
       else {
@@ -36,11 +36,11 @@ class ScanViewController: UITableViewController {
     
   }
 
-  func addSensor( sensor:CadenceSensor ) {
+  func addSensor( _ sensor:CadenceSensor ) {
   
-      let indexPath = NSIndexPath(forRow: sensors.count, inSection: 0)
+      let indexPath = IndexPath(row: sensors.count, section: 0)
       sensors.append(sensor)
-      tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+      tableView.insertRows(at: [indexPath], with: .automatic)
   }
 }
 
@@ -48,16 +48,16 @@ class ScanViewController: UITableViewController {
 extension ScanViewController {
   
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
     return sensors.count
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-    let cell = tableView.dequeueReusableCellWithIdentifier(Constants.SensorCellID)!
+    let cell = tableView.dequeueReusableCell(withIdentifier: Constants.SensorCellID)!
     let sensor = sensors[indexPath.row].peripheral
-    cell.textLabel?.text  = sensor.name ?? sensor.identifier.UUIDString
+    cell.textLabel?.text  = sensor.name ?? sensor.identifier.uuidString
     return cell
   }
   
